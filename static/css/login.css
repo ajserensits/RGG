@@ -1,0 +1,38 @@
+body {
+    background-color : whitesmoke;
+}
+
+#content_div {
+    margin-left : 25%;
+    margin-right : 25%;
+    margin-top : 5%;
+    width : 50%;
+    border : 3px solid black;
+    border-radius : 10px;
+    padding-left : 18%;
+    background-color : white;
+}
+
+#username {
+    margin-top : 2%;
+    width : 50%;
+    border-radius : 5px;
+    padding : 2%;
+}
+
+#password {
+    margin-top : 2%;
+    margin-bottom : 2%;
+    width : 50%;
+    border-radius : 5px;
+    padding : 2%;
+}
+
+#login_button {
+    margin-bottom : 2%;
+    width : 50%;
+}
+
+#header {
+    margin-left : 14.5%;
+}

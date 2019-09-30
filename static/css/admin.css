@@ -1,0 +1,113 @@
+body {
+    background-color : whitesmoke;
+}
+
+#content_div {
+    margin-left : 25%;
+    margin-right : 25%;
+    margin-top : 1%;
+    width : 50%;
+}
+
+.subcontent_div {
+    padding : 5%;
+    padding-top : 2%;
+    border : 3px solid black;
+    border-radius : 5px;
+    margin-top : 2%;
+    margin-bottom : 2%;
+    background-color : white;
+}
+
+.upload_div {
+    margin-top : 5%;
+    padding : 3%;
+    border-top : 2px solid black;
+}
+
+#closed_span {
+    margin-left : 4%;
+    margin-right : 1%;
+}
+
+#open_span {
+    margin-right : 1%;
+}
+
+.glyphicon {
+        margin-left : 5%;
+}
+
+.header-glyph {
+        margin-left : 2%;
+}
+
+
+.file_input {
+    display : inline !important;
+    margin-right : 10%;
+}
+
+#hours_open , #hours_closed {
+    width : 8% !important;
+    display : inline !important;
+}
+
+#recordings_select , #spreadsheets_select {
+    width : 30% !important;
+    display : inline !important;
+}
+
+.upload_label {
+    font-style : italic;
+    font-size : 18px;
+    font-weight : bold;
+}
+
+h2 {
+    margin-top : 0%;
+    margin-bottom : 4%;
+}
+
+.hours_label {
+    display : inline;
+    margin-right : 10%;
+}
+
+.mappings_label {
+    margin-top : 2%;
+}
+
+#rgg_label {
+    margin-left : 2%;
+    margin-right : 1%;
+}
+
+#radial_label {
+    margin-right : 1%;
+}
+
+#update_mapping {
+    margin-top : 2%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

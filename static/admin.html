@@ -1,0 +1,77 @@
+<html>
+        <head>
+                <title>RGG Admin Portal</title>
+                <script src = "js/jquery.min.js"></script>
+                <script src = "js/bootstrap.min.js"></script>
+                <link href = "css/bootstrap.min.css" rel = "stylesheet"/>
+                <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+
+                <script src = "js/xlsx.full.min.js"></script>
+
+                <script src = "js/admin.js"></script>
+                <link href = "css/admin.css" rel = "stylesheet"/>
+        </head>
+        <body>
+                <div id = "content_div">
+                    <div id = "hours_div" class = "subcontent_div">
+                            <h2 class = "subcontent_header">Hours of Operation [EST] <span class = "glyphicon glyphicon-time header-glyph"></h2>
+                            <p class = "hours_label"><span id = "open_span">Open</span><select id = "hours_open" class ="form-control"></select><span id = "closed_span">Closed</span><select id = "hours_closed" class ="form-control"></select></p>
+                            <button id = "update_hours" class = "btn btn-primary">Update Hours of Operation<span class = "glyphicon glyphicon-floppy-disk"></span></button>
+                    </div> <!-- End Hours Div -->
+                    <div id = "spreadsheets_div" class = "subcontent_div">
+                            <h2 class = "subcontent_header">Spreadsheets <span class = "glyphicon glyphicon-calendar header-glyph"></h2>
+
+                            <select id = "spreadsheets_select" class ="form-control">
+                            </select>
+                            <button id = "download_spreadsheet" class = "btn btn-warning data-manipulation">Download<span class = "glyphicon glyphicon-download"></span></button>
+                            <!-- <button id = "delete_spreadsheet" class = "btn btn-danger data-manipulation">Delete<span class = "glyphicon glyphicon-trash"></span></button> -->
+
+                            <div class = "upload_div">
+                                <p class = "upload_label">UPLOAD SPREADSHEET</p>
+                                <form id = "spreadsheets_form" method="post" enctype="multipart/form-data" onsubmit = "return checkSpreadsheetForm(this);" action = "https://ajserensits.pythonanywhere.com/upload/?file_type=spreadsheets">
+                                  <input id = "spreadsheet_file_input" type="file" name="data" class = "btn btn-info file_input"/ accept = ".xlsx">
+                                  <input id = "hidden_spreadsheet_input" type="hidden" name ="file_to_replace"/>
+                                  <input id = "upload_spreedsheet_user" type ="hidden" name = "user"/>
+                                  <input id = "upload_spreedsheet_token" type ="hidden" name = "token"/>
+                                  <input type="submit" value="Upload Spreadsheet" name="submit" class = "btn btn-primary data-manipulation"/>
+                                </form>
+                            </div>
+                    </div> <!-- End Spreadsheet Div -->
+                    <div id = "recordings_div" class = "subcontent_div">
+                                <h2 class = "subcontent_header">Recordings <span class = "glyphicon glyphicon-music header-glyph"></h2>
+                                <select id = "recordings_select" class ="form-control">
+                                </select>
+                                <button id = "download_recording" class = "btn btn-warning data-manipulation">Download<span class = "glyphicon glyphicon-download"></span></button>
+                                <!-- <button id = "delete_recording" class = "btn btn-danger data-manipulation">Delete<span class = "glyphicon glyphicon-trash"></span></button> -->
+
+                                <div class = "upload_div">
+                                    <p class = "upload_label">UPLOAD RECORDING</p>
+                                    <form id = "recordings_form" method="post" enctype="multipart/form-data" onsubmit = "return checkRecordingsForm(this);" action = "https://ajserensits.pythonanywhere.com/upload/?file_type=recordings">
+                                      <input id = "recordings_file_input" type="file" name="data" class = "btn btn-info file_input" accept = ".mp3"/>
+                                      <input id = "hidden_recordings_input" type="hidden" name ="file_to_replace"/>
+                                      <input id = "upload_recordings_user" type ="hidden" name = "user"/>
+                                      <input id = "upload_recordings_token" type ="hidden" name = "token"/>
+                                      <input type="submit" value="Upload Recording" name="submit" class = "btn btn-primary data-manipulation" />
+                                    </form>
+                                </div>
+                    </div> <!-- End Recordings Div -->
+                    <div id = "number_mappings_div" class = "subcontent_div">
+                                <h2 class = "subcontent_header">Number Mappings <span class = "glyphicon glyphicon-earphone header-glyph"></h2>
+                                <select id = "number_mappings_select" class ="form-control">
+                                </select>
+
+                                <p class = "mappings_label"><span id = "radial_label">Radial</span><input id = "mapping_radial"/><span id ="rgg_label">RGG</span><input id = "mapping_rgg"/></p>
+                                <button id = "update_mapping" class ="btn btn-primary">Update Mapping<span class = "glyphicon glyphicon-floppy-disk"></span></button>
+                    </div> <!-- End Number Mappings Div -->
+
+
+
+
+
+                </div>
+
+        <input type = "hidden" id = "auth_token"/>
+        </body>
+
+</html>

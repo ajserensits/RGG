@@ -1,0 +1,4 @@
+<Response>
+  	<Play>https://ajserensits.pythonanywhere.com/media/recordings/Gilt_ETeam_Greeting.mp3</Play>
+    <Dial callbackUrl="http://webhookr.com/cpaas-inbound-dial-example" method="GET">16104908353</Dial>
+</Response>
