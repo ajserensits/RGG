@@ -1,0 +1,125 @@
+{
+    "Workflows" : [
+      {
+              "Name" : "Rue_Main" ,
+              "Type" : "Main" ,
+              "Greeting" : "RLL_Greeting" ,
+              "Closed" : "RLL_Closed" ,
+              "Menu" : "RLL_Menu" ,
+              "DYK" : "RLL_DYK" ,
+              "Default" : "4" ,
+              "Options" : {
+                  "1" : "spreadsheet" ,
+                  "2" : "dyk" ,
+                  "3" : "spreadsheet" ,
+                  "4" : "spreadsheet"
+              } ,
+              "Actions" : {
+                  "1" : "Rue_Main_Modify_Order" ,
+                  "2" : "Rue_Main_Order_Status" ,
+                  "3" : "Rue_Main_Return_Info" ,
+                  "4" : "Rue_Main_Other"
+              } ,
+              "DYK_Repeat" : {
+                  "Continue" : "2" ,
+                  "Repeat" : "1"
+              }
+        } ,
+        {
+                "Name" : "Gilt_Main" ,
+                "Type" : "Main" ,
+                "Greeting" : "Gilt_Greeting" ,
+                "Closed" : "Gilt_Closed" ,
+                "Menu" : "Gilt_Menu" ,
+                "DYK" : "Gilt_DYK" ,
+                "Default" : "5" ,
+                "Options" : {
+                    "1" : "spreadsheet" ,
+                    "2" : "dyk" ,
+                    "3" : "spreadsheet" ,
+                    "4" : "spreadsheet" ,
+                    "5" : "spreadsheet"
+                } ,
+                "Actions" : {
+                    "1" : "Gilt_Main_Order_Inquiry" ,
+                    "2" : "Gilt_Main_Return_Instructions" ,
+                    "3" : "Gilt_Main_Return_Inquiries" ,
+                    "4" : "Gilt_Main_Gilt_City" ,
+                    "5" : "Gilt_Main_Other"
+                } ,
+                "DYK_Repeat" : {
+                    "Continue" : "2" ,
+                    "Repeat" : "1"
+                }
+        } ,
+        {
+              "Name" : "Gilt_Noir_Main" ,
+              "Type" : "Main" ,
+              "Greeting" : "Gilt_Noir_Greeting" ,
+              "Closed" : "Gilt_Noir_Closed" ,
+              "Menu" : "Gilt_Noir_Menu" ,
+              "DYK" : "Gilt_Noir_DYK" ,
+              "Default" : "5" ,
+              "Options" : {
+                  "1" : "spreadsheet" ,
+                  "2" : "dyk" ,
+                  "3" : "spreadsheet" ,
+                  "4" : "spreadsheet" ,
+                  "5" : "spreadsheet"
+              } ,
+              "Actions" : {
+                  "1" : "Gilt_Noir_Main_Order_Inquiry" ,
+                  "2" : "Gilt_Noir_Main_Return_Instructions" ,
+                  "3" : "Gilt_Noir_Main_Return_Inquiry" ,
+                  "4" : "Gilt_Noir_Main_Gilt_City" ,
+                  "5" : "Gilt_Noir_Main_Other"
+              } ,
+              "DYK_Repeat" : {
+                  "Continue" : "2" ,
+                  "Repeat" : "1"
+              }
+        } ,
+        {
+            "Name" : "Rue_Gift_Card_Svcs" ,
+            "Type" : "Short" ,
+            "Greeting" : "RLL_Gift_Card_Svcs_Greeting" ,
+            "Closed" : "RLL_Gift_Card_Svcs_Closed" ,
+            "Spreadsheet" : "Rue_Gift_Card_Svcs"
+        } ,
+        {
+            "Name" : "Rue_Promo" ,
+            "Type" : "Short" ,
+            "Greeting" : "RLL_Promo_Greeting" ,
+            "Closed" : "RLL_Promo_Closed" ,
+            "Spreadsheet" : "Rue_Promo"
+        } ,
+        {
+            "Name" : "Rue_Gift_Return" ,
+            "Type" : "Short" ,
+            "Greeting" : "RLL_Gift_Return_Greeting" ,
+            "Closed" : "RLL_Gift_Return_Closed" ,
+            "Spreadsheet" : "Rue_Gift_Return"
+        } ,
+        {
+            "Name" : "Rue_ETeam" ,
+            "Type" : "Short" ,
+            "Greeting" : "RLL_ETeam_Greeting" ,
+            "Closed" : "RLL_ETeam_Closed" ,
+            "Spreadsheet" : "Rue_ETeam"
+        } ,
+        {
+            "Name" : "Gilt_ETeam" ,
+            "Type" : "Short" ,
+            "Greeting" : "Gilt_ETeam_Greeting" ,
+            "Closed" : "Gilt_ETeam_Closed" ,
+            "Spreadsheet" : "Gilt_ETeam"
+        } ,
+        {
+            "Name" : "Gilt_Noir_ETeam" ,
+            "Type" : "Short" ,
+            "Greeting" : "Gilt_Noir_ETeam_Greeting" ,
+            "Closed" : "Gilt_Noir_ETeam_Closed" ,
+            "Spreadsheet" : "Gilt_Noir_ETeam"
+        }
+    ]
+}
