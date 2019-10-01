@@ -19,7 +19,6 @@ from . import views
 from . import status
 from . import spreadsheet
 from . import recording
-from . import retrieve
 from . import upload
 from . import updateNumberMappings
 from . import startCallFlow
@@ -31,8 +30,6 @@ urlpatterns = [
     path('views/',views.index) ,
     path('status/' , status.isOpen) ,
     path('spreadsheet/' , spreadsheet.getRelation) ,
-    path('recording/' , recording.getFile) ,
-    path('retrieve/' , retrieve.retrieve) ,
     path('upload/' , upload.upload) ,
     path('getRecording/' , recording.getCurrentlyUploadedRecordings) ,
     path('deleteRecording/' , recording.deleteRecording) ,

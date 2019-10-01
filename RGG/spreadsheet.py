@@ -1,3 +1,14 @@
+"""
+ Author: Andrew Serensits [ ajserensits@avaya.com ]
+
+ This file is meant to handle all of the functionality that deals with reading
+ spreadsheets of xlsx format and making a decision based off of that spreadsheet's
+ content that dictates whether or not a call gets forwarded to Radial or RGG.
+
+ This file also allows you to view the currently uploaded spreadsheets and/or delete
+ them
+"""
+
 import xlrd
 import random
 import json
@@ -9,34 +20,34 @@ from os import listdir
 from os.path import isfile, join
 from . import settings
 
+"""
+ This function gives you all of the spreadsheet names in /media/spreadsheets/
 
+ @param HttpRequest
+ @return HttpResponse of type application/json containing all of the spreadsheets file names
+"""
 def getCurrentlyUploadedSpreadsheets(request):
     files = listdir(settings.SPREADSHEETS_URL)
     json_data = json.dumps(files)
     return HttpResponse(json_data, content_type="application/json")
 
+"""
+ This function allows you to delete a spreadsheet from /media/spreadsheets/
+
+ @param HttpRequest with a GET parameter as the file_name to delete
+ @return HttpResponse of type application/json indicating whether or not the file was successfully deleted
+"""
 def deleteSpreadsheet(request):
     fileName = request.GET.get('file_name')
     os.remove(settings.SPREADSHEETS_URL + fileName)
     return HttpResponse('{"Status" : "Success"}', content_type="application/json")
 
+"""
+ This function gives you a phone number from either Radial or RGG
 
-def getFileFromName(name):
-    # your other codes ...
-    file = open(settings.SPREADSHEETS_URL + name + ".xlsx", "rb").read()
-    response = HttpResponse(file, content_type="application/vnd.ms-excel")
-    response['Content-Disposition'] = 'attachment; filename=' + name + '.xlsx';
-    return response
-
-def uploadFile(fileData , fileName):
-    # your other codes ...
-    file = open("RGG/spreadsheets/" + fileName + ".xlsx", "w")
-    file.write(fileData)
-    file.close()
-
-    response = HttpResponse('{"Status" : "Success" , "FileData" : "'+fileData+'"}', content_type="application/json")
-    return response
-
+ @param sheet_str of type string which is the Excel spreadsheet to look at
+ @return string which represents the phone number to forward a call to
+"""
 def getAllocationDecisionString(sheet_str):
     loc = settings.SPREADSHEETS_URL + sheet_str + ".xlsx"
     wb = xlrd.open_workbook(loc)
@@ -58,6 +69,13 @@ def getAllocationDecisionString(sheet_str):
     else:
         return rgg
 
+"""
+ This function gives you a phone number from either Radial or RGG
+
+ @param sheet_str of type string which is the Excel spreadsheet to look at
+ @return HttpResponse of type text/plain which represents the phone number to
+         forward the call to
+"""
 def getAllocationDecision(sheet_str):
     loc = settings.SPREADSHEETS_URL + sheet_str + ".xlsx"
     wb = xlrd.open_workbook(loc)
@@ -79,6 +97,13 @@ def getAllocationDecision(sheet_str):
     else:
         return HttpResponse(rgg , content_type="text/plain")
 
+"""
+ This function gives you a phone number from either Radial or RGG
+
+ @param request of type HttpRequest which contains a GET param as sheet_name
+ @return HttpResponse of type text/plain which represents the phone number to
+         forward the call to
+"""
 def getRelation(request):
     sheet_str = request.GET.get('sheet_name')
     loc = settings.SPREADSHEETS_URL + sheet_str + ".xlsx"
@@ -101,10 +126,31 @@ def getRelation(request):
     else:
         return HttpResponse(rgg , content_type="text/plain")
 
+"""
+ This function gives you a random number between 0 and 100 [inclusive]
+
+ @param None
+ @return Integer
+"""
 def get_random_number():
     return random.randint(0,100)
 
+"""
+ This function gives you the current time floored to the nearest half hour in the format that the spreadsheets
+ expect which is HHMM in military time.
 
+ IE: 9:30 PM becomes 2130
+
+ Example function input ===> output
+ If the current time is:
+    1) 9:27 PM ===> 2100
+    2) 9:31 PM ===> 2130
+    3) 1:07 AM ===> 0100
+    4) 12:38 PM ===> 1230
+
+ @param None
+ @return a string representing the time
+"""
 def get_full_time():
     tz = timezone('US/Eastern')
     time_str = str(datetime.now(tz))
@@ -127,6 +173,12 @@ def get_full_time():
     ## this returns a datetime object pointing to right now
     ## according to the timezone info object handed in as the tz variable.
 
+"""
+ This function gives you the correct column index of the spreadsheet to look at.
+
+ @param None
+ @return an integer representing the index
+"""
 def get_time_multiplier():
     multiplier = 1
     tz = timezone('US/Eastern')
@@ -148,6 +200,14 @@ def get_time_multiplier():
 
     return multiplier
 
+
+"""
+ This function gives you the correct row index of the spreadsheet to look at.
+
+ @param sheet of type xlrd spreadsheet  , date of type string expected format
+                                          is MM/DD/YYYY
+ @return an integer representing the index , -1 if it cannont be found
+"""
 def get_correct_row(sheet , date):
     date_col = sheet.col_values(0)
     i = 0
@@ -166,9 +226,12 @@ def get_correct_row(sheet , date):
 
     return -1
 
+"""
+ This function gives you the date in MM/DD/YYYY format
 
-
-
+ @param None
+ @return a string in MM/DD/YYYY format
+"""
 def get_full_date():
     tz = timezone('US/Eastern')
     time_str = str(datetime.now(tz))
@@ -194,6 +257,13 @@ def get_full_date():
     ## this returns a datetime object pointing to right now
     ## according to the timezone info object handed in as the tz variable.
 
+"""
+ This function goes through the allocation decision process and returns a number
+ between 0 and 100.
+
+ @param sheet of type xlrd spreadsheet
+ @return a floating point number between 0 and 100
+"""
 def get_allocation(sheet):
     date = get_full_date()
     mult = get_time_multiplier()
@@ -207,8 +277,3 @@ def get_allocation(sheet):
         return 0
 
     return (radial / (radial + rgg)) * 100
-
-
-
-
-

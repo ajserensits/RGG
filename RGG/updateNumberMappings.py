@@ -1,9 +1,24 @@
+"""
+ Author: Andrew Serensits [ ajserensits@avaya.com ]
+
+ This file is meant to handle all of the functionality that deals with updating
+ and retrieving the number mappings for each call flow and each potential leg
+ of each call flow.  These mappings dictate what number is a possibility of being
+ forwarded to.
+"""
+
 import json
 from django.http import HttpResponse
 from . import auth
 from . import settings
 
+"""
+ This function updates the number mappings for one call flow or one leg of the
+ call flow
 
+ @param HttpRequest
+ @return HttpResponse of type application/json indicating a successful update
+"""
 def update(request):
     rgg = request.GET.get('rgg')
     radial = request.GET.get('radial')
@@ -30,6 +45,12 @@ def update(request):
 
     return HttpResponse('{"Status" : "Success"}' , content_type="application/json")
 
+"""
+ This function gives you all of the number mappings in JSON
+
+ @param HttpRequest
+ @return HttpResponse of type application/json containing all of the number mappings 
+"""
 def getNumberMappings(request):
     json_data = open(settings.NUMBER_MAPPING_URL)
     data = json.load(json_data)

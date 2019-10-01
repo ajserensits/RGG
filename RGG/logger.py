@@ -1,3 +1,10 @@
+"""
+ Author: Andrew Serensits [ ajserensits@avaya.com ]
+
+ This file is meant to handle all of the functionality that deals with logging as a call goes through each
+ potential leg.
+"""
+
 import json
 from datetime import datetime
 from pytz import timezone
@@ -109,4 +116,3 @@ def updateDYKCallLog(sid , workflow):
         file.close()
     except:
         return
-

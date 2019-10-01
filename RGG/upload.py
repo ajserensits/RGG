@@ -1,3 +1,10 @@
+"""
+ Author: Andrew Serensits [ ajserensits@avaya.com ]
+
+ This file is meant to handle all of the functionality that deals with
+ uploading media files (mp3 / xlsx) to the corresponding folder
+"""
+
 import xlrd
 import random
 import os
@@ -13,7 +20,16 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
+"""
+ This function allows you to upload a file into either /media/recordings/ or
+ /media/spreadsheets/
 
+ @param HttpRequest containing the file_type (recordings / spreadsheets) [GET] ,
+                    file_to_replace [GET] , and the actual new file data which comes
+                    in the POST Data
+ @return HttpResponseRedirect indicating whether or not you were able to Successfully
+         upload that file.
+"""
 @csrf_exempt
 def upload(request):
     user = request.GET.get('user')
